@@ -1,0 +1,109 @@
+TODO
+Virtualization
+Service VmService : MeasurableService {
+
+summary: 'This operation stops any migration of a virtual machine to another physical host.'
+description: '
+[source]
+----
+POST /ovirt-engine/api/vms/123/cancelmigration
+----
+
+The cancel migration action does not take any action specific parameters,
+so the request body should contain an empty `action`:
+
+[source,xml]
+----
+<action/>
+----
+'
+author: 'Arik Hadas <ahadas@redhat.com>'
+date: '14 Sep 2016'
+status: added
+CancelMigration {
+'Indicates if the migration should cancelled asynchronously.'
+In async :: Boolean; 
+}
+
+TODO
+CommitSnapshot {
+'Indicates if the snapshots should be committed asynchronously.'
+In async :: Boolean;
+}
+
+TODO
+Clone {
+TODO
+In vm :: Vm;
+
+'Indicates if the clone should be performed asynchronously.'
+In async :: Boolean;
+}
+
+summary: 'Detaches a virtual machine from a pool.'
+description: '
+[source]
+----
+POST /ovirt-engine/api/vms/123/detach
+----
+
+The detach action does not take any action specific parameters, so the request body should contain an
+empty `action`:
+
+[source,xml]
+----
+<action/>
+----
+'
+author: 'Arik Hadas <ahadas@redhat.com>'
+date: '14 Sep 2016'
+status: added
+Detach {
+'Indicates if the detach should be performed asynchronously.'
+In async :: Boolean;
+}
+
+summary: 'Export a virtual machine to an export domain.'
+description: '
+[source]
+----
+POST /ovirt-engine/api/vms/123/export
+----
+     
+With a request body like this:
+     
+[source,xml]
+----
+<action>
+ <storage_domain>
+  <name>myexport</name>
+ </storage_domain>
+ <exclusive>true</exclusive>
+ <discard_snapshots>true</discard_snapshots>
+</action>
+----
+'
+author: 'Tal Nisan <tisan@redhat.com>'
+date: '19 Sep 2016'
+status: added
+Export {
+summary: 'The `discard_snapshots` parameter is to be used when the virtual machine should be exported with all its snapshots collapsed.'
+author: 'Tal Nisan <tisan@redhat.com>'
+date: '19 Sep 2016'
+status: added
+In discardSnapshots :: Boolean;
+
+summary: 'The `exclusive` parameter is to be used when the virtual machine should be exported even if another copy of it already exists in the export domain (override).'
+author: 'Tal Nisan <tisan@redhat.com>'
+date: '19 Sep 2016'
+status: added
+In exclusive :: Boolean;
+
+TODO
+In storageDomain :: StorageDomain;
+
+'Indicates if the export should be performed asynchronously.'
+In async :: Boolean;
+}
+
+}

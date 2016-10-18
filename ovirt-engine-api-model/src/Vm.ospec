@@ -1,0 +1,167 @@
+TODO
+Type Vm : VmBase {
+
+TODO
+status :: VmStatus;
+    
+TODO
+statusDetail :: String;
+
+TODO
+stopReason :: String;
+
+TODO
+startTime :: Date;
+
+TODO
+stopTime :: Date;
+
+TODO
+runOnce :: Boolean;
+
+TODO
+payloads :: Payload*;
+     
+summary: "The configuration of the virtual machine's placement policy."
+description: '
+This configuration can be updated to pin a virtual machine to one or more hosts.
+
+NOTE: Virtual machines that are pinned to multiple hosts cannot be live migrated, but in the event of a host
+failure, any virtual machine configured to be highly available is automatically restarted on one of the other
+hosts to which the virtual machine is pinned.
+
+For example, to pin a virtual machine to two hosts, you would send a request like the following:
+         
+[source]
+----
+PUT /api/vms/123
+----
+
+With a request body like this:
+
+[source,xml]
+----
+<vm>
+ <high_availability>
+  <enabled>true</enabled>
+  <priority>1</priority>
+ </high_availability>
+ <placement_policy>
+  <hosts>
+   <host>
+    <name>Host1</name>
+   </host>
+   <host>
+    <name>Host2</name>
+   </host>
+  </hosts>
+ <affinity>pinned</affinity>
+ </placement_policy>
+</vm>
+----
+'
+author: 'Phillip Bailey <phbailey@redhat.com>'
+date: '14 Sep 2016'
+status: added
+placementPolicy :: VmPlacementPolicy;
+     
+TODO
+fqdn :: String;
+     
+TODO
+useLatestTemplateVersion :: Boolean;
+     
+TODO
+nextRunConfigurationExists :: Boolean;
+     
+TODO
+numaTuneMode :: NumaTuneMode;
+     
+TODO
+guestTimeZone :: TimeZone;
+     
+TODO
+guestOperatingSystem :: GuestOperatingSystem;
+
+TODO
+Link host :: Host;
+    
+TODO
+Link template :: Template;
+
+summary: 'References to the original template the virtual machine was created from.'
+description: '
+If the virtual machine is cloned from a template or another virtual machine,
+the `template` links to the Blank template and the `original_template`
+is used to track history.
+
+Otherwise the `template` and `original_template` are the same.
+'
+author: 'Marek Libra <mlibra@redhat.com>'
+date: '8 Jul 2016'
+status: added
+Link originalTemplate :: Template;
+
+TODO
+Link instanceType :: InstanceType;
+
+summary: 'Link to the the list of network interface devices on the virtual machine.'
+author: 'Martin Mucha <mmucha@redhat.com>'
+date: '14 Sep 2016'
+status: added 
+Link nics :: Nic*;
+
+TODO
+Link snapshots :: Snapshot*;
+    
+TODO
+Link vmPool :: VmPool;
+    
+TODO
+Link cdroms :: Cdrom*;
+    
+TODO
+Link floppies :: Floppy*;
+    
+TODO
+Link reportedDevices :: ReportedDevice*;
+    
+TODO
+Link watchdogs :: Watchdog*;
+    
+TODO
+Link permissions :: Permission*;
+    
+TODO
+Link externalHostProvider :: ExternalHostProvider;
+    
+TODO
+Link affinityLabels :: AffinityLabel*;
+    
+TODO
+Link applications :: Application*;
+    
+TODO
+Link graphicsConsoles :: GraphicsConsole*;
+    
+TODO
+Link hostDevices :: HostDevice*;
+    
+TODO
+Link katelloErrata :: KatelloErratum*;
+    
+TODO
+Link numaNodes :: NumaNode*;
+    
+TODO
+Link sessions :: Session*;
+    
+TODO
+Link statistics :: Statistic*;
+    
+TODO
+Link tags :: Tag*;
+
+'References to the disks attached to the virtual machine.'
+Link diskAttachments :: DiskAttachment*;
+}
